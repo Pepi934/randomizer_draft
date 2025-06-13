@@ -1,0 +1,407 @@
+/* Reset & Base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0c1a;
+    color: #f0e6d2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #c8aa6e;
+    margin: 30px 0 10px;
+    text-shadow: 1px 1px 5px black;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.1rem;
+    background: linear-gradient(145deg, #c89b3c, #785a28);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.mode-button {
+    background: linear-gradient(145deg, #2f3244, #1c1f2e);
+    color: #f0e6d2;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+}
+
+.mode-button:hover {
+    background: linear-gradient(145deg, #3c3f57, #2a2d3f);
+    border-color: #c89b3c;
+}
+
+.mode-button.active {
+    border-color: #c89b3c;
+    background: linear-gradient(145deg, #3c3f57, #2a2d3f);
+}
+
+#players {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 90%;
+    max-width: 800px;
+    margin-top: 30px;
+}
+
+.player-input {
+    display: flex;
+    flex-direction: column;
+    background-color: #1c1f2e;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #2f3244;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.player-input textarea {
+    resize: none;
+    height: 30px;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    background-color: #2f3244;
+    color: #f0e6d2;
+    line-height: 1.2;
+}
+
+.player-input select {
+    padding: 6px;
+    border-radius: 6px;
+    background-color: #2f3244;
+    color: #f0e6d2;
+    border: none;
+}
+
+/* Styles pour le conteneur des propositions */
+.teams {
+    display: none; /* Changé par JS en 'flex' */
+    flex-direction: row; /* Aligne les propositions horizontalement */
+    justify-content: center; /* Centre les propositions */
+    align-items: flex-start; /* Aligne le haut des propositions */
+    flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+    gap: 20px;
+    margin-top: 30px;
+    width: 95%;
+    max-width: 1400px; /* Augmentation de la largeur max pour accueillir les 3 propositions */
+}
+
+/* Styles pour un bloc de proposition unique */
+.proposition-container {
+    flex: 1; /* Permet aux propositions de prendre une part égale de l'espace */
+    min-width: 300px; /* Largeur minimale avant retour à la ligne */
+    max-width: 400px; /* Largeur maximale pour éviter qu'elles ne s'étirent trop */
+    border: 1px solid #2f3244;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #111320;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.proposition-container h3 {
+    text-align: center;
+    color: #c8aa6e;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px black;
+}
+
+/* Conteneur pour les deux équipes d'une proposition */
+.proposition-teams {
+    display: flex;
+    flex-direction: column; /* Les équipes Blue et Red sont empilées verticalement */
+    gap: 15px;
+}
+
+.team {
+    background-color: #1c1f2e;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+#blue-side {
+    border-left: 6px solid #1e90ff;
+}
+
+#red-side {
+    border-left: 6px solid #ff4c4c;
+}
+
+.team h2 {
+    margin-top: 0;
+    font-size: 1.3rem; /* Taille de police légèrement réduite pour s'adapter */
+    text-align: center;
+    color: #f0e6d2;
+    text-shadow: 1px 1px 3px black;
+}
+
+.team ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.team li {
+    padding: 8px;
+    margin: 5px 0;
+    background-color: #2f3244;
+    border-radius: 6px;
+    font-size: 0.95rem; /* Taille de police légèrement réduite */
+}
+
+/* Styles pour les liens de draft */
+.draft-links-container {
+    background-color: #1c1f2e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+    border-top: 3px solid #c89b3c;
+}
+
+.draft-links-container h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #f0e6d2;
+    text-shadow: 1px 1px 3px black;
+}
+
+#links-content div {
+    margin: 15px auto;
+    max-width: 90%;
+    max-width: 600px;
+}
+
+#links-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0b0c1a;
+    border: 1px solid #2f3244;
+    color: #c8aa6e;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+#links-content input[type="text"]:focus {
+    outline: none;
+    border-color: #c89b3c;
+    background-color: #1c1f2e;
+}
+
+/* Styles pour les notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #c89b3c, #785a28);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Styles pour le conteneur des propositions */
+.teams {
+    display: none;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; 
+    gap: 20px;
+    margin-top: 30px;
+    width: 95%;
+    max-width: 1400px;
+}
+
+/* Styles pour un bloc de proposition unique */
+.proposition-container {
+    flex: 1; 
+    min-width: 300px;
+    max-width: 400px;
+    border: 1px solid #2f3244;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #111320;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    display: flex; /* Ajout pour une meilleure disposition interne */
+    flex-direction: column; /* Les éléments internes seront empilés */
+    align-items: center; /* Centrer les éléments horizontalement */
+}
+
+/* ... (le reste de vos styles pour .proposition-container h3, etc.) ... */
+.proposition-container h3 {
+    text-align: center;
+    color: #c8aa6e;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px black;
+}
+.proposition-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* S'assurer qu'il prend toute la largeur */
+}
+.team {
+    background-color: #1c1f2e;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+#blue-side {
+    border-left: 6px solid #1e90ff;
+}
+#red-side {
+    border-left: 6px solid #ff4c4c;
+}
+.team h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    text-align: center;
+    color: #f0e6d2;
+    text-shadow: 1px 1px 3px black;
+}
+.team ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+.team li {
+    padding: 8px;
+    margin: 5px 0;
+    background-color: #2f3244;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* -- NOUVEAUX STYLES -- */
+
+/* Style pour le bouton "Choisir cette équipe" */
+.choose-team-btn {
+    margin-top: 20px; /* Espace au-dessus du bouton */
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: linear-gradient(145deg, #1e5799, #2989d8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.choose-team-btn:hover {
+    transform: scale(1.05);
+}
+.choose-team-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Style pour la zone qui affichera les liens */
+.draft-links-placeholder {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+.draft-link-display {
+    margin-bottom: 15px;
+}
+.draft-link-display p {
+    margin: 0 0 5px 0;
+    color: #c8aa6e;
+    font-weight: bold;
+}
+.draft-link-display input[type="text"] {
+    width: 90%;
+    padding: 8px;
+    background-color: #0b0c1a;
+    border: 1px solid #2f3244;
+    color: #f0e6d2;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.link-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #2f3244;
+    color: #f0e6d2;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+.link-button:hover {
+    background-color: #3c3f57;
+}
+
+/* ... (reste de votre css, notifications, etc.) ... */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #c89b3c, #785a28);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}

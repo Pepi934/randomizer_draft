@@ -1,0 +1,674 @@
+/* CSS pour imiter le style de draftlol.dawe.gg */
+:root {
+  --background-color: #010A13;
+  --blue-team-color: #0B849E;
+  --red-team-color: #BE1E37;
+  --slot-background: #0A1428;
+  --border-color: #1E2345;
+  --text-color: #EFEFEF;
+  --timer-height: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.main-layout-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Fichier : style.css */
+
+.draft-container {
+  flex-grow: 1;
+  padding: 20px;
+  margin-top: 80px;
+  position: relative; /* AJOUTEZ CETTE LIGNE */
+}
+
+.team.blue-team, .team.red-team {
+  width: 320px;
+  padding-top: 20px;
+  flex-shrink: 0; 
+}
+
+.team.blue-team {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.team.red-team {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.team-header {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+}
+.blue-team-header {
+    background-color: var(--blue-team-color);
+}
+.red-team-header {
+    background-color: var(--red-team-color);
+}
+
+.team-name {
+    margin-left: 10px;
+}
+
+.picks-container {
+    background-color: transparent;
+    padding: 0; 
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #7bb7e0;
+    font-weight: bold;
+    margin: 10px 0 4px 0;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.red-team .section-title {
+  color: #e07b7b;
+}
+
+.slots {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+}
+
+.pick-slot, .ban-slot {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: #151c28;
+  border: 2px solid #232834;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.pick-slot {
+  width: 100%;
+  height: 120px; 
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.picks-container .slots .pick-slot:nth-child(3) {
+    margin-bottom: 15px;
+}
+
+.pick-slot.active, .ban-slot.active {
+    border-color: #C8AA6E;
+    box-shadow: 0 0 15px rgba(200, 170, 110, 0.5);
+}
+
+.pick-slot img, .ban-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pick-slot img {
+  border-radius: 0;
+}
+
+.ban-slot img {
+  border-radius: 0;
+}
+
+.champion-name {
+    margin-left: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 2px #000a;
+}
+
+.pick-slot:not(:has(img)), .ban-slot:not(:has(img)) {
+  background: #151c28bb;
+  color: #888;
+}
+
+.center-console {
+  width: auto;
+  text-align: center;
+  margin: 0 20px;
+  flex-grow: 1; 
+}
+
+#phase-title {
+  font-size: 1.2rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  height: 20px;
+}
+
+#timer-bar-container {
+  width: 100%;
+  height: var(--timer-height);
+  background-color: var(--slot-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  transition: width 0.1s linear, background-color 0.3s ease;
+}
+
+#timer-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.champion-pool-container {
+  width: 100%;
+}
+
+/* MODIFIÉ : Hauteur maximale ajustée pour l'alignement */
+.champion-pool {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  background: transparent;
+  box-shadow: none;
+  padding: 18px 12px;
+  width: 100%;
+  min-height: 320px;
+  max-height: 545px; /* << VALEUR AJUSTÉE */
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.champion {
+  width: 64px;
+  height: 64px;
+  border-radius: 0;
+  background: #181c22;
+  border: 2px solid #232834;
+  transition: border 0.2s, transform 0.15s;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.champion:hover {
+  border: 2px solid #C8AA6E;
+  transform: scale(1.07);
+}
+
+.champion.selected {
+  filter: grayscale(1) brightness(0.5);
+  border: 2px solid #444;
+  cursor: not-allowed;
+}
+
+.bans-container {
+  position: fixed;
+  bottom: 0;
+  padding: 0 20px 24px 20px;
+  z-index: 20;
+}
+
+.blue-team .bans-container {
+  left: 0;
+}
+.red-team .bans-container {
+  right: 0;
+}
+
+.bans-container .section-title {
+  display: none;
+}
+
+.bans-container .slots {
+  flex-direction: row;
+  gap: 16px;
+  width: auto;
+}
+
+.red-team .bans-container .slots {
+  flex-direction: row-reverse;
+}
+
+.ban-slot {
+  width: 60px;
+  height: 60px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+    .main-layout-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .team.blue-team, .team.red-team {
+        width: 100%;
+        max-width: 400px;
+        padding-top: 0;
+    }
+
+    .draft-container {
+        width: 100%;
+        max-width: 600px;
+        order: -1;
+        margin-top: 0;
+    }
+}
+
+/* ... (tout votre CSS existant) ... */
+
+/* =================================== */
+/* STYLES POUR L'ÉCRAN "PRÊT"    */
+/* =================================== */
+#ready-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#ready-box {
+    background-color: var(--slot-background);
+    padding: 40px;
+    border: 2px solid var(--border-color);
+    text-align: center;
+}
+
+#ready-box h2 {
+    margin-top: 0;
+}
+
+#ready-box div {
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+#ready-box span {
+    font-weight: bold;
+}
+
+#ready-box span.ready {
+    color: #4CAF50; /* Vert */
+}
+
+#ready-box span.not-ready {
+    color: #F44336; /* Rouge */
+}
+
+
+#ready-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: var(--blue-team-color);
+    border: none;
+    color: white;
+}
+
+#ready-btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+/* =================================== */
+/* STYLES DU LOBBY          */
+/* =================================== */
+
+.lobby-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lobby-container h1 {
+    font-size: 3rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(200, 170, 110, 0.4), 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.lobby-container button {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 25px;
+}
+
+.lobby-container button:hover {
+    background-color: var(--slot-background);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(200, 170, 110, 0.3);
+}
+
+#join-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#join-id {
+    background-color: var(--slot-background);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 200px;
+    transition: border-color 0.2s;
+}
+
+#join-id::placeholder {
+    color: #8a92b0;
+    opacity: 0.7;
+}
+
+#join-id:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+#join-btn {
+    padding: 15px 30px;
+    margin-bottom: 0; /* Annule la marge héritée */
+}
+
+#info-section {
+    text-align: center;
+    background-color: rgba(10, 20, 40, 0.5);
+    padding: 20px 40px;
+    border: 1px solid var(--border-color);
+}
+
+#info-section p {
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: 0 0 10px 0;
+}
+
+#draft-id-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    padding: 10px 20px;
+    border: 2px solid var(--accent-color);
+    letter-spacing: 5px;
+    margin: 10px 0 15px 0;
+    display: inline-block;
+}
+
+/* =================================== */
+/* RESPONSIVE DESIGN           */
+/* =================================== */
+
+@media (max-width: 1200px) {
+    .main-layout-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .team.blue-team, .team.red-team {
+        width: 100%;
+        max-width: 400px;
+        padding-top: 0;
+    }
+
+    .draft-container {
+        width: 100%;
+        max-width: 600px;
+        order: -1;
+        margin-top: 0;
+    }
+}
+
+/* Fichier : style.css */
+
+/* Conteneur pour les icônes de rôle */
+.role-filter-container {
+    position: absolute;
+    /* On remonte encore les icônes en diminuant la valeur 'top' */
+    top: 0px; /* Anciennement 20px */
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    /* Utilisation de Flexbox pour un alignement et un espacement parfaits */
+    display: flex;
+    justify-content: center; /* Centre les icônes horizontalement */
+    align-items: center;
+    /* On double à nouveau l'espace entre les icônes */
+    gap: 200px; /* Anciennement 60px */
+    z-index: 5; 
+}
+
+/* Style pour chaque icône de rôle */
+.role-icon {
+    width: 38px;  /* Taille réduite pour un look épuré */
+    height: 38px;
+    opacity: 0.6; /* Un peu de transparence pour mieux s'intégrer */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.role-icon:hover {
+    opacity: 1; /* L'icône devient opaque au survol */
+    transform: scale(1.1); /* Léger zoom pour le feedback */
+}
+
+/* =================================== */
+/* STYLES POUR LA BARRE DE RECHERCHE   */
+/* =================================== */
+
+.search-container {
+    position: relative; /* Nécessaire pour positionner l'icône à l'intérieur */
+    width: 50%;
+    max-width: 400px;
+    margin: 15px auto 0 auto; /* Marge en haut pour l'espace, auto pour centrer */
+}
+
+#champion-search-input {
+    width: 100%;
+    padding: 12px 20px 12px 45px; /* Espace à gauche pour l'icône */
+    background-color: var(--slot-background);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 5px;
+    box-sizing: border-box; /* S'assure que le padding n'augmente pas la largeur */
+    transition: border-color 0.2s;
+}
+
+#champion-search-input:focus {
+    outline: none;
+    border-color: #C8AA6E;
+}
+
+#champion-search-input::placeholder {
+    color: #8a92b0;
+    opacity: 0.7;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    opacity: 0.6;
+}
+
+/* =================================== */
+/* STYLES POUR LE BOUTON CONFIRMER     */
+/* =================================== */
+
+#confirm-pick-btn {
+    position: fixed;
+    bottom: 30px; /* Aligné verticalement avec les bans */
+    left: 50%;
+    transform: translateX(-50%); /* Centre horizontalement */
+    
+    background-color: var(--blue-team-color);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+    padding: 12px 40px;
+    border: 2px solid #50aabc;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 50; /* Au-dessus de la plupart des éléments */
+    
+    display: none; /* Caché par défaut */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#confirm-pick-btn:hover {
+    background-color: #1a9fbd;
+    transform: translateX(-50%) scale(1.05);
+}
+
+#confirm-pick-btn.visible {
+    display: block; /* La classe .visible le fera apparaître */
+}
+
+.pick-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplit le conteneur sans déformer, peut rogner les bords */
+  object-position: center 25%; /* Se concentre sur le centre horizontal et le quart supérieur de l'image */
+  border-radius: 0;
+}
+
+.pick-slot img[data-champion="Darius"],
+.pick-slot img[data-champion="Fiora"],
+.pick-slot img[data-champion="Illaoi"],
+.pick-slot img[data-champion="Irelia"],
+.pick-slot img[data-champion="Sett"],
+.pick-slot img[data-champion="Yorick"],
+.pick-slot img[data-champion="Yone"],
+.pick-slot img[data-champion="Urgot"],
+.pick-slot img[data-champion="Volibear"],
+.pick-slot img[data-champion="Shen"],
+.pick-slot img[data-champion="BelVeth"],
+.pick-slot img[data-champion="Graves"],
+.pick-slot img[data-champion="Aurora"],
+.pick-slot img[data-champion="Galio"],
+.pick-slot img[data-champion="Mel"],
+.pick-slot img[data-champion="Malzahar"],
+.pick-slot img[data-champion="Kassadin"],
+.pick-slot img[data-champion="Swain"],
+.pick-slot img[data-champion="Sivir"],
+.pick-slot img[data-champion="Taric"],
+.pick-slot img[data-champion="Renata"],
+.pick-slot img[data-champion="Leona"] {
+  object-position: center 15%; /* Remonte le cadrage verticalement */
+}
+
+.pick-slot img[data-champion="Skarner"] {
+  object-position: center 65%; /* Descend le cadrage verticalement */
+}
+
+/* Nouveaux styles pour le lobby avec liens */
+#links-section {
+    margin-top: 30px;
+    background-color: rgba(10, 20, 40, 0.5);
+    padding: 20px 30px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 500px;
+}
+.link-box {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+.link-box label {
+    margin-right: 10px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.link-box input[type="text"] {
+    flex-grow: 1;
+    background-color: var(--slot-background);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px;
+    font-size: 0.9rem;
+}
+.link-box .copy-btn {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    margin-bottom: 0; /* Annule la marge des boutons du lobby */
+}
+#lobby-instructions {
+    margin-top: 20px;
+    color: #a0a0a0;
+    text-align: center;
+}

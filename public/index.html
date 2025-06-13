@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom LoL & TFT - Team Balancer</title>
+    <!-- Chemin mis à jour -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+
+    <h1>Tirage au sort des équipes</h1>
+    
+    <div class="mode-buttons">
+        <div class="mode-button active" id="btn-draft">Custom Draft</div>
+        <div class="mode-button" id="btn-tft">Custom TFT</div>
+    </div>
+
+    <div id="players"></div>
+    
+    <button id="generate-button">Lancer</button>
+    
+    <!-- Ce conteneur affichera les propositions d'équipes -->
+    <div class="teams"></div>
+
+    <!-- Ce conteneur était pour l'ancienne API, nous ne l'utiliserons plus.
+         Il sera masqué par le JS. -->
+    <div id="draft-links" class="draft-links-container" style="display: none;"></div>
+
+    <!-- Chargement de socket.io pour communiquer avec le serveur -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Chemins mis à jour -->
+    <script src="js/draft.js"></script>
+    <script src="js/tft.js"></script>
+</body>
+</html>

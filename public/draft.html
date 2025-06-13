@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Système de Draft LoL</title>
+  <!-- Chemin mis à jour -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="ready-overlay">
+    <div id="ready-box">
+        <h2 id="ready-title">Préparation de la draft</h2>
+        <div id="ready-status-blue">BLUE TEAM: <span>Pas prêt</span></div>
+        <div id="ready-status-red">RED TEAM: <span>Pas prêt</span></div>
+        <button id="ready-btn">JE SUIS PRÊT</button>
+    </div>
+  </div>
+
+  <div id="draft-interface" style="display: none;">
+    <!-- Le reste de votre HTML pour l'interface de draft reste inchangé -->
+    <div class="top-bar">
+      <div class="team-header blue-team-header">
+          <span>BLUE TEAM</span>
+      </div>
+      <div class="center-console">
+        <div id="phase-title"></div>
+        <div id="timer-text">30</div>
+        <div id="timer-bar-container">
+          <div id="timer-bar"></div>
+        </div>
+      </div>
+      <div class="team-header red-team-header">
+          <span>RED TEAM</span>
+      </div>
+    </div>
+
+    <main class="main-layout-container">
+      <div class="team blue-team">
+        <div class="picks-container">
+          <div class="section-title">PICKS</div>
+          <div class="slots" id="blue-picks"></div>
+        </div>
+        <div class="bans-container">
+          <div class="section-title">BANS</div>
+          <div class="slots" id="blue-bans"></div>
+        </div>
+      </div>
+
+      <div class="draft-container">
+        <div class="role-filter-container">
+              <!-- Assurez-vous que le chemin vers vos images est correct depuis la racine du dossier public -->
+              <img src="image/league_dataset/roles/top.png" alt="Rôle Top" class="role-icon" data-role="Top">
+              <img src="image/league_dataset/roles/jungle.png" alt="Rôle Jungle" class="role-icon" data-role="Jungle">
+              <img src="image/league_dataset/roles/mid.png" alt="Rôle Mid" class="role-icon" data-role="Mid">
+              <img src="image/league_dataset/roles/adc.png" alt="Rôle ADC" class="role-icon" data-role="ADC">
+              <img src="image/league_dataset/roles/support.png" alt="Rôle Support" class="role-icon" data-role="Support">
+        </div>
+        <div class="champion-pool-container">
+          <div class="champion-pool" id="champion-pool"></div>
+        </div>
+        <div class="search-container">
+          <img src="image/loupe.png" alt="Rechercher" class="search-icon" />
+          <input type="text" id="champion-search-input" placeholder="Rechercher un champion...">
+        </div>
+      </div>
+
+      <div class="team red-team">
+        <div class="picks-container">
+          <div class="section-title">PICKS</div>
+          <div class="slots" id="red-picks"></div>
+        </div>
+        <div class="bans-container">
+          <div class="section-title">BANS</div>
+          <div class="slots" id="red-bans"></div>
+        </div>
+      </div>
+    </main>
+    <button id="confirm-pick-btn">CONFIRMER</button>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Chemins mis à jour -->
+  <script src="js/champion-data.js"></script> 
+  <script src="js/script.js"></script>
+</body>
+</html>

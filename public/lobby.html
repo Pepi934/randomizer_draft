@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lobby - Draft LoL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="lobby-container">
+        <h1>Système de Draft LoL</h1>
+        <button id="create-btn">Créer une Draft</button>
+        
+        <div id="links-section" style="display:none;">
+            <p>Partagez ces liens avec votre adversaire :</p>
+            <div class="link-box">
+                <label for="blue-link">Lien Équipe Bleue :</label>
+                <input type="text" id="blue-link" readonly>
+                <button class="copy-btn" data-link-id="blue-link">Copier</button>
+            </div>
+            <div class="link-box">
+                <label for="red-link">Lien Équipe Rouge :</label>
+                <input type="text" id="red-link" readonly>
+                <button class="copy-btn" data-link-id="red-link">Copier</button>
+            </div>
+            <p id="lobby-instructions">Cliquez sur le lien de l'équipe que vous voulez contrôler.</p>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="lobby.js"></script>
+</body>
+</html>
